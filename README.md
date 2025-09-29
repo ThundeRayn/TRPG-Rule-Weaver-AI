@@ -1,6 +1,8 @@
 ### TRPG-Rule-Weaver - your beginner AI tutor
 
-A beginner-friendly Call of Cthulhu (CoC) tutor app built for [Hackathon Name].
+>Rule Weaver is a beginner-friendly TRPG AI Tutor specifically designed for players and game masters
+
+>Idea inspired at AI THINKERER & GOOGLE CLOUD HACKATHON, TORONTO, 2025.
 
 🚀 Overview
 
