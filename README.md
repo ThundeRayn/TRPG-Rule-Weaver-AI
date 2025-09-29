@@ -1,8 +1,14 @@
 ### TRPG-Rule-Weaver - your beginner AI tutor
 
->Rule Weaver is a beginner-friendly TRPG AI Tutor specifically designed for players and game masters
+Rule Weaver is a beginner-friendly TRPG AI Tutor specifically designed for players and game masters. 
 
->Idea inspired at AI THINKERER & GOOGLE CLOUD HACKATHON, TORONTO, 2025.
+##### for people who are
+- totally new to TRPG COC rules, and wanna be a player for the first time
+- have played several games, but wanna be a game master for the first time
+- have basic understanding for the game, but wanna enhance their understanding without reading the plain rule book
+<br>
+
+> Idea inspired at AI THINKERER & GOOGLE CLOUD HACKATHON, TORONTO, 2025.
 
 🚀 Overview
 
