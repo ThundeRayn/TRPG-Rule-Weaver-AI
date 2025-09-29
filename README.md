@@ -1,73 +1,71 @@
-# React + TypeScript + Vite
+### TRPG-Rule-Weaver - your beginner AI tutor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A beginner-friendly Call of Cthulhu (CoC) tutor app built for [Hackathon Name].
 
-Currently, two official plugins are available:
+🚀 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+CoC Tutor is designed to help new players learn the basics of the Call of Cthulhu tabletop RPG quickly and interactively.
+Our goal is to make onboarding smoother for first-time players by providing:
 
-## React Compiler
+Step-by-step guidance through rules and character creation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Sample scenarios and prompts for practice
 
-## Expanding the ESLint configuration
+A lightweight, interactive interface for quick learning
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🎯 Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+📚 Rule Walkthrough – easy explanations of character attributes, dice rolls, and skills
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+🎲 Dice Simulator – roll checks directly in the app
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+👤 Character Builder – guided process for creating investigators
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🌌 Tutorial Scenarios – short sessions to learn game flow
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🛠️ Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Frontend: React (or your chosen framework)
+
+Backend: Node.js / Express (if used)
+
+Database / Storage: JSON / Firebase / Supabase (if applicable)
+
+Other: OpenAI API / custom logic (if relevant)
+
+📦 Installation
+# Clone repo
+git clone https://github.com/your-username/coc-tutor.git
+cd coc-tutor
+
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+
+💡 Usage
+
+Run npm run dev and open http://localhost:3000
+
+Follow the tutorial steps to create a character and play sample scenes
+
+🎥 Demo
+
+👉 [Add screenshots or demo video link here]
+
+🏆 Built at
+
+This project was built during [Hackathon Name + Year] under the theme [Theme].
+
+👥 Team
+
+[Your Name] – Frontend
+
+[Teammate] – Backend
+
+[Teammate] – Design/Story
+
+📜 License
+
+MIT License
