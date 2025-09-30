@@ -14,7 +14,7 @@ TRPG Rule Weaver is a beginner-friendly TRPG AI Tutor specifically designed for 
 ![hippo](https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3anJ0ZnA1d2h4aXhqZ3k5aWIxcHN5YjE0eG5oZWpyMnZsaXRwdnAxbyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xT5LMUModJiHeAaAz6/giphy.gif)
 <br>
 
-#### Overview!
+### This project is for you!
 
 TRPG Rule Weaver is designed to tutor new players learn the basics of the Call of Cthulhu tabletop RPG quickly with fun interactive.
 The goal is to make onboarding smoother for first-time players by providing:
