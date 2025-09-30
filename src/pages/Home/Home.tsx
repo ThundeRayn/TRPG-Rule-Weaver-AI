@@ -5,7 +5,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-[var(--primary-color)] text-[var(--primary-text-color)]">
       <div className="flex flex-col border-6 border-[var(--border-color)] p-4 items-center gap-2">
         <h1 className={styles.eyeTitle}>Hello, Adventurer</h1>
         <h2 className={styles.eyeWelcome}>Start Your Journey Now</h2>
@@ -48,7 +48,7 @@ const Home = () => {
           I need AI assisstant
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
