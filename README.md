@@ -39,9 +39,11 @@ The goal is to make onboarding smoother for first-time players by providing:
 
 #### Installation
 ##### Host with your own API key
+```
 git clone https://github.com/ThundeRayn/TRPG-Rule-Weaver-AI.git
 cd RTPG-Rule-Weaver-AI
-
+```
+after cd, do
 ```
 npm install
 ```
