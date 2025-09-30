@@ -10,7 +10,7 @@ TRPG Rule Weaver is a beginner-friendly TRPG AI Tutor specifically designed for 
 - have basic understanding for the game, but wanna enhance their understanding without reading the plain rule book
 
 **OR**
-- You have trouble reading long text rules
+- You just have trouble reading long text rules
 ![hippo](https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3anJ0ZnA1d2h4aXhqZ3k5aWIxcHN5YjE0eG5oZWpyMnZsaXRwdnAxbyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xT5LMUModJiHeAaAz6/giphy.gif)
 <br>
 
