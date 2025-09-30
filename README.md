@@ -27,15 +27,15 @@ The goal is to make onboarding smoother for first-time players by providing:
 
 #### Tech Stack
 
-- Frontend: React/ChatUI/Axios
+    Frontend: React/ChatUI/Axios
 
-- Backend: Node.js/RAG
+    Backend: Node.js/RAG
 
-- Agent: ADK/Vertex AI Agent Engine
+    Agent: ADK/Vertex AI Agent Engine
 
-- Storage:Vertex AI Memory Bank/GCS
+    Storage:Vertex AI Memory Bank/GCS
 
-- vibe coding: Gemini
+    vibe coding: Gemini
 
 #### Installation
 ##### Host with your own API key
@@ -61,7 +61,7 @@ open http://localhost:5173
 
 🏆 Built at
 
-This project was built during AI THINKERER & GOOGLE CLOUD HACKATHON, TORONTO, 2025 under the studying topic - AI Tutor.
+This project was built during AI THINKERER & GOOGLE CLOUD HACKATHON, TORONTO, 2025 under the studying topic - AI agents.
 
 #### Developer
 
