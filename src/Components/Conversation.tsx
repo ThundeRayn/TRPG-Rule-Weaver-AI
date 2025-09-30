@@ -35,16 +35,27 @@ export default function Conversation() {
         ref={scrollRef}
         className="flex-1 overflow-y-auto p-4 space-y-2 bg-[var(--primary-color)] rounded"
       >
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            className={`max-w-[80%] p-2 rounded-xl ${
-              msg.role === "user" ? "bg-[var(--dialog-color)] text-white self-end" : "bg-gray-200 self-start"
-            }`}
-          >
-            {msg.text}
-          </div>
-        ))}
+          {messages.map((msg, i) => (
+            <div
+              key={i}
+              className={
+                msg.role === "user"
+                  ? "flex justify-end"
+                  : "flex justify-start"
+              }
+            >
+              <div
+                className={`p-2 rounded-xl ${
+                  msg.role === "user"
+                    ? "bg-[var(--dialog-color)] text-white ml-auto px-5 max-w-[70%] w-fit min-w-[2.5rem]"
+                    : "bg-[var(--primary-color)] max-w-[80%] border px-5 border-white"
+                }`}
+                style={msg.role === "user" ? { wordBreak: 'break-word' } : {}}
+              >
+                {msg.text}
+              </div>
+            </div>
+          ))}
       </div>
 
       {/* Input bar */}
