@@ -33,7 +33,7 @@ export default function Conversation() {
       {/* Conversation messages */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-50 rounded"
+        className="flex-1 overflow-y-auto p-4 space-y-2 bg-[var(--primary-color)] rounded"
       >
         {messages.map((msg, i) => (
           <div
