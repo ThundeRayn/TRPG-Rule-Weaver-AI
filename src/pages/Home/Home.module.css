@@ -1,0 +1,82 @@
+/* Responsive Player Widget Styles */
+.playerGrid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(120px, 1fr));
+	gap: 1.2rem;
+	justify-items: center;
+	align-items: stretch;
+	width: 100%;
+	max-width: 600px;
+	margin: 2rem auto 0 auto;
+}
+
+@media (max-width: 600px) {
+	.playerGrid {
+		grid-template-columns: 1fr 1fr;
+		gap: 0.8rem;
+		max-width: 98vw;
+	}
+}
+
+.playerWidget {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f3f6fa;
+	border: 2px solid #c3d0e6;
+	border-radius: 1em;
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #222;
+	min-width: 120px;
+	min-height: 60px;
+	width: 100%;
+	cursor: pointer;
+	transition: background 0.15s, border 0.15s, transform 0.12s;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.playerWidget:hover, .playerWidget:focus {
+	background: #e0eaff;
+	border-color: #0072ff;
+	transform: translateY(-2px) scale(1.03);
+	outline: none;
+}
+
+
+
+.eyeTitle {
+  padding-top: 1rem;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--primary-text-color);
+  margin-bottom: 0.2em;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.eyeWelcome {
+	font-size: 1.7rem;
+	font-weight: 800;
+	background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+	color: transparent;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: 0 2px 12px rgba(0,114,255,0.18);
+	margin-bottom: 0.5em;
+	letter-spacing: 0.03em;
+	text-align: center;
+}
+
+.downArrow {
+	font-size: 2rem;
+	color: #0072ff;
+	margin-top: 0.5em;
+	animation: bounceDown 1.2s infinite;
+	opacity: 0.7;
+}
+
+@keyframes bounceDown {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(12px); }
+}

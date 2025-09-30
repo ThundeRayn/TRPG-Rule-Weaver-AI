@@ -33,7 +33,7 @@ The goal is to make onboarding smoother for first-time players by providing:
 
 #### Tech Stack
 
-    Frontend: React/ChatUI/Axios
+    Frontend: React/ShadcnUI/Axios
 
     Backend: Node.js/RAG
 
