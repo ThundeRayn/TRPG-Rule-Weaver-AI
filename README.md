@@ -2,6 +2,8 @@
 
 TRPG Rule Weaver is a beginner-friendly TRPG AI Tutor specifically designed for players and game masters. 
 
+![hippo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXg4am4yZ2llOGpzeHloZXloOHZsOHVjNnJ0cDlnaThwczQzczQweiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Bw4e7THBSRnR56mwX0/giphy.gif)
+
 #### This project is for people who are
 - totally new to TRPG COC rules, and wanna be a player for the first time
 - have played several games, but wanna be a game master for the first time
