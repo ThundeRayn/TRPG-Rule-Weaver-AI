@@ -1,79 +1,71 @@
 ### TRPG-Rule-Weaver - your beginner AI tutor
 
-Rule Weaver is a beginner-friendly TRPG AI Tutor specifically designed for players and game masters. 
+TRPG Rule Weaver is a beginner-friendly TRPG AI Tutor specifically designed for players and game masters. 
 
-##### for people who are
+#### This project is for people who are
 - totally new to TRPG COC rules, and wanna be a player for the first time
 - have played several games, but wanna be a game master for the first time
 - have basic understanding for the game, but wanna enhance their understanding without reading the plain rule book
 <br>
 
-> Idea inspired at AI THINKERER & GOOGLE CLOUD HACKATHON, TORONTO, 2025.
+#### Overview!
 
-🚀 Overview
+TRPG Rule Weaver is designed to tutor new players learn the basics of the Call of Cthulhu tabletop RPG quickly with fun interactive.
+The goal is to make onboarding smoother for first-time players by providing:
 
-CoC Tutor is designed to help new players learn the basics of the Call of Cthulhu tabletop RPG quickly and interactively.
-Our goal is to make onboarding smoother for first-time players by providing:
+- Step-by-step guidance through rules and character creation
+- Sample scenarios and prompts for practice
+- A lightweight, interactive interface for quick learning
 
-Step-by-step guidance through rules and character creation
+#### Features
 
-Sample scenarios and prompts for practice
+- Launch flow: walk you through the game intro, character build, basic rule, dice rule, without you reading each module in handbook  
 
-A lightweight, interactive interface for quick learning
+- Senario Simulator: AI simulate senarios for you to help you understand the rules, no more "questions" during a real play
 
-🎯 Features
+- AI tutor - Feel free to ask anything during the launching process, just like interacting with real guider
 
-📚 Rule Walkthrough – easy explanations of character attributes, dice rolls, and skills
+#### Tech Stack
 
-🎲 Dice Simulator – roll checks directly in the app
+Frontend: React/ChatUI/Axios
 
-👤 Character Builder – guided process for creating investigators
+Backend: Node.js/RAG
 
-🌌 Tutorial Scenarios – short sessions to learn game flow
+Agent: ADK/Vertex AI Agent Engine
 
-🛠️ Tech Stack
+Storage:Vertex AI Memory Bank/GCS
 
-Frontend: React (or your chosen framework)
+vibe coding: Gemini
 
-Backend: Node.js / Express (if used)
+#### Installation
+##### Host with your own API key
+git clone https://github.com/ThundeRayn/TRPG-Rule-Weaver-AI.git
+cd RTPG-Rule-Weaver-AI
 
-Database / Storage: JSON / Firebase / Supabase (if applicable)
-
-Other: OpenAI API / custom logic (if relevant)
-
-📦 Installation
-# Clone repo
-git clone https://github.com/your-username/coc-tutor.git
-cd coc-tutor
-
-# Install dependencies
+```
 npm install
+```
 
-# Start dev server
+open`.env` file, input your own secret API key
+
+```
 npm run dev
+```
 
-💡 Usage
+open http://localhost:5173
+*or other localhost path on your pc*
 
-Run npm run dev and open http://localhost:3000
+#### Live Demo
 
-Follow the tutorial steps to create a character and play sample scenes
-
-🎥 Demo
-
-👉 [Add screenshots or demo video link here]
+👉 waiting to be deployed...
 
 🏆 Built at
 
-This project was built during [Hackathon Name + Year] under the theme [Theme].
+This project was built during AI THINKERER & GOOGLE CLOUD HACKATHON, TORONTO, 2025 under the studying topic - AI Tutor.
 
-👥 Team
+#### Developer
 
-[Your Name] – Frontend
+Shirong T.
 
-[Teammate] – Backend
-
-[Teammate] – Design/Story
-
-📜 License
-
-MIT License
+Feel free to explore my portforlio here
+https://shirong.site
