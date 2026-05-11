@@ -6,7 +6,9 @@ import { Button } from "@/Components/ui/button"
 type Message = { role: "user" | "assistant"; text: string }
 
 export default function Conversation() {
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState<Message[]>([
+    { role: "assistant", text: "Welcome new player, let's create a new character!" }
+  ])
   const [input, setInput] = useState("")
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -15,18 +17,35 @@ export default function Conversation() {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" })
   }, [messages])
 
-  const sendMessage = () => {
-    if (!input) return
+  const sendMessage = async () => {
+  if (!input) return;
 
-    // Add user message
-    setMessages(prev => [...prev, { role: "user", text: input }])
-    setInput("")
+  const userMessage = input;
+  setMessages(prev => [...prev, { role: "user", text: userMessage }]);
+  setInput("");
 
-    // Fake assistant reply for now
-    setTimeout(() => {
-      setMessages(prev => [...prev, { role: "assistant", text: "This is a reply." }])
-    }, 500)
+  try {
+    const response = await fetch("http://localhost:5000/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userMessage, history: messages }),
+    });
+
+    const data = await response.json();
+
+    // Add AI-generated reply
+    setMessages(prev => [
+      ...prev,
+      { role: "assistant", text: data.reply || "No response from AI." },
+    ]);
+  } catch (error) {
+    console.error("Error calling AI:", error);
+    setMessages(prev => [
+      ...prev,
+      { role: "assistant", text: "Error: Failed to get AI response." },
+    ]);
   }
+};
 
   return (
     <div className="flex flex-col h-full">
