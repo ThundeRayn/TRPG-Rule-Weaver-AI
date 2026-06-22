@@ -13,6 +13,15 @@ type Props = {
   onMessageSent?: () => void
 }
 
+function parseChoices(text: string): string[] {
+  const matches = [...text.matchAll(/\[CHOICE:\s*([^\]]+)\]/g)]
+  return matches.map(m => m[1].trim())
+}
+
+function stripChoices(text: string): string {
+  return text.replace(/\[CHOICE:[^\]]+\]/g, "").replace(/\n{3,}/g, "\n\n").trim()
+}
+
 function parseCitations(text: string) {
   const matches = [...text.matchAll(/\[([^\]]+),\s*p\.(\d+)\]/g)]
   const seen = new Set<string>()
@@ -85,12 +94,31 @@ function CitationBadges({ text }: { text: string }) {
   )
 }
 
+function ChoiceButtons({ text, onChoose }: { text: string; onChoose: (choice: string) => void }) {
+  const choices = parseChoices(text)
+  if (choices.length === 0) return null
+  return (
+    <div className="flex flex-wrap gap-2 mt-3">
+      {choices.map((choice, i) => (
+        <button
+          key={i}
+          onClick={() => onChoose(choice)}
+          className="text-sm px-3 py-1.5 rounded-lg border border-[var(--theme-color)] text-[var(--theme-color)] hover:bg-[var(--theme-color)] hover:text-white transition-colors cursor-pointer"
+        >
+          {choice}
+        </button>
+      ))}
+    </div>
+  )
+}
+
 function AssistantBubble({ text }: { text: string }) {
+  const displayText = stripChoices(text)
   if (isDescription(text)) {
     return (
       <div className="flex justify-start">
         <div className="italic text-[var(--secondary-text-color)] bg-[var(--sidebar-color)] border-l-2 border-[var(--theme-color)] px-5 py-3 max-w-[85%] rounded-r-xl text-sm leading-relaxed">
-          <ReactMarkdown components={mdComponents}>{stripAsterisks(text)}</ReactMarkdown>
+          <ReactMarkdown components={mdComponents}>{stripAsterisks(displayText)}</ReactMarkdown>
           <CitationBadges text={text} />
         </div>
       </div>
@@ -99,7 +127,7 @@ function AssistantBubble({ text }: { text: string }) {
   return (
     <div className="flex justify-start">
       <div className="bg-[var(--primary-color)] max-w-[80%] border border-white px-5 p-2 rounded-xl leading-relaxed">
-        <ReactMarkdown components={mdComponents}>{text}</ReactMarkdown>
+        <ReactMarkdown components={mdComponents}>{displayText}</ReactMarkdown>
         <CitationBadges text={text} />
       </div>
     </div>
@@ -151,10 +179,9 @@ export default function Conversation({ sessionId, onMessageSent }: Props) {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" })
   }, [messages])
 
-  const sendMessage = async () => {
-    if (!input || loading) return
+  const sendText = async (userMessage: string) => {
+    if (!userMessage || loading) return
 
-    const userMessage = input
     setMessages((prev) => [...prev, { role: "user", text: userMessage }])
     setInput("")
     setLoading(true)
@@ -285,6 +312,8 @@ export default function Conversation({ sessionId, onMessageSent }: Props) {
     }
   }
 
+  const sendMessage = () => sendText(input)
+
   const isStreamingNow = messages.some((m) => m.streaming)
 
   return (
@@ -293,22 +322,30 @@ export default function Conversation({ sessionId, onMessageSent }: Props) {
         ref={scrollRef}
         className="flex-1 overflow-y-auto p-4 space-y-2 bg-[var(--primary-color)] rounded"
       >
-        {messages.map((msg, i) =>
-          msg.role === "user" ? (
-            <div key={i} className="flex justify-end">
-              <div
-                className="bg-[var(--dialog-color)] text-white ml-auto px-5 max-w-[70%] w-fit min-w-[2.5rem] p-2 rounded-xl"
-                style={{ wordBreak: "break-word" }}
-              >
-                {msg.text}
+        {(() => {
+          const lastAssistantIdx = messages.reduce((last, m, i) => m.role === "assistant" && !m.streaming ? i : last, -1)
+          return messages.map((msg, i) =>
+            msg.role === "user" ? (
+              <div key={i} className="flex justify-end">
+                <div
+                  className="bg-[var(--dialog-color)] text-white ml-auto px-5 max-w-[70%] w-fit min-w-[2.5rem] p-2 rounded-xl"
+                  style={{ wordBreak: "break-word" }}
+                >
+                  {msg.text}
+                </div>
               </div>
-            </div>
-          ) : msg.streaming ? (
-            <StreamingBubble key={i} text={msg.text} />
-          ) : (
-            <AssistantBubble key={i} text={msg.text} />
+            ) : msg.streaming ? (
+              <StreamingBubble key={i} text={msg.text} />
+            ) : (
+              <div key={i}>
+                <AssistantBubble text={msg.text} />
+                {i === lastAssistantIdx && !loading && (
+                  <ChoiceButtons text={msg.text} onChoose={sendText} />
+                )}
+              </div>
+            )
           )
-        )}
+        })()}
         {loading && !isStreamingNow && (
           <div className="flex justify-start">
             <div className="bg-[var(--sidebar-color)] border border-[var(--border-color)] px-4 py-2 rounded-xl text-sm text-[var(--secondary-text-color)]">
