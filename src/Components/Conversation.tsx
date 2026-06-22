@@ -5,12 +5,14 @@ import { useAuth } from "@/context/AuthContext"
 import ReactMarkdown from "react-markdown"
 
 type Message = { role: "user" | "assistant"; text: string; streaming?: boolean }
+type Sheet   = Record<string, unknown>
 
 const API = "http://localhost:5000"
 
 type Props = {
-  sessionId: string
+  sessionId:      string
   onMessageSent?: () => void
+  onStepChange?:  (step: string, sheet: Sheet) => void
 }
 
 function parseChoices(text: string): string[] {
@@ -20,6 +22,10 @@ function parseChoices(text: string): string[] {
 
 function stripChoices(text: string): string {
   return text.replace(/\[CHOICE:[^\]]+\]/g, "").replace(/\n{3,}/g, "\n\n").trim()
+}
+
+function stripAdvance(text: string): string {
+  return text.replace(/\[ADVANCE:\s*\{[\s\S]*?\}\]/g, "").replace(/\n{3,}/g, "\n\n").trim()
 }
 
 function parseCitations(text: string) {
@@ -113,7 +119,7 @@ function ChoiceButtons({ text, onChoose }: { text: string; onChoose: (choice: st
 }
 
 function AssistantBubble({ text }: { text: string }) {
-  const displayText = stripChoices(text)
+  const displayText = stripChoices(stripAdvance(text))
   if (isDescription(text)) {
     return (
       <div className="flex justify-start">
@@ -145,7 +151,7 @@ function StreamingBubble({ text }: { text: string }) {
   )
 }
 
-export default function Conversation({ sessionId, onMessageSent }: Props) {
+export default function Conversation({ sessionId, onMessageSent, onStepChange }: Props) {
   const { token } = useAuth()
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
@@ -168,9 +174,11 @@ export default function Conversation({ sessionId, onMessageSent }: Props) {
         } else {
           setMessages([{ role: "assistant", text: "Welcome new player, let's create a new character!" }])
         }
+        onStepChange?.(data.currentStep || "CONCEPT", data.characterSheet || {})
       })
       .catch(() => {
         setMessages([{ role: "assistant", text: "Welcome new player, let's create a new character!" }])
+        onStepChange?.("CONCEPT", {})
       })
       .finally(() => setLoading(false))
   }, [sessionId])
@@ -247,7 +255,7 @@ export default function Conversation({ sessionId, onMessageSent }: Props) {
         const last = updated[updated.length - 1]
         if (!last?.streaming) return prev
 
-        const chunks = splitIntoChunks(last.text)
+        const chunks = splitIntoChunks(stripAdvance(last.text))
 
         if (chunks.length === 0) {
           return updated.slice(0, -1) // remove empty trailing bubble
@@ -291,6 +299,7 @@ export default function Conversation({ sessionId, onMessageSent }: Props) {
           try {
             const event = JSON.parse(line.slice(6))
             if (event.type === "token") handleToken(event.token)
+            if (event.type === "step_advance") onStepChange?.(event.step, event.sheet)
             if (event.type === "done") { doneReceived = true; finalize() }
           } catch {}
         }
