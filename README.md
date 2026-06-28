@@ -27,42 +27,72 @@ The goal is to make onboarding smoother for first-time players by providing:
 
 #### Features
 
-- Launch flow: walk you through the game intro, character build, basic rule, dice rule, without you reading each module in handbook  
+- Launch flow: walk you through the game intro, character build, basic rule, dice rule, without you reading each module in handbook
 
-- Senario Simulator: AI simulate senarios for you to help you understand the rules, no more "questions" during a real play
+- RAG-grounded answers: every rule the AI tells you is cited from the actual CoC 7th Edition rulebook with [Source, p.XX] — no hallucinated rules
 
-- AI tutor - Feel free to ask anything during the launching process, just like interacting with real guider
+- Bilingual EN + CN: ask in English or Chinese, get answers in the same language, sourced from the matching language rulebook
+
+- Scenario Simulator: AI simulates scenarios for you to help you understand the rules, no more "questions" during a real play
+
+- AI tutor: Feel free to ask anything during the launching process, just like interacting with a real game master
+
+- Session persistence: your conversation history is saved per session so you can pick up where you left off
+
+- User accounts: sign up / log in to keep your sessions private and carry your progress across devices
 
 #### Tech Stack
 
-    Frontend: React/ShadcnUI/Axios
+    Frontend: React 19 / TypeScript / Tailwind CSS v4 / ShadcnUI / React Router / React Markdown / Vite
 
-    Backend: Node.js/RAG
+    Backend: Node.js / Express 5 / DeepSeek API (LLM)
 
-    Agent: ADK/Vertex AI Agent Engine
+    RAG Pipeline: @huggingface/transformers (multilingual-e5-small) / pdf-parse / MongoDB Atlas Vector Search
 
-    Storage:Vertex AI Memory Bank/GCS
+    Storage: MongoDB Atlas (vector store + session persistence)
 
-    vibe coding: Gemini
+    Auth: JWT (jsonwebtoken / bcryptjs)
+
+    vibe coding: DeepSeek
 
 #### Installation
 ##### Host with your own API key
 ```
 git clone https://github.com/ThundeRayn/TRPG-Rule-Weaver-AI.git
-cd RTPG-Rule-Weaver-AI
+cd TRPG-Rule-Weaver-AI
 ```
-after cd, do
+
+**Backend**
 ```
+cd Rule-Weaver-backend
 npm install
 ```
 
-open`.env` file, input your own secret API key
+Open `.env` and fill in your keys:
+```
+DEEPSEEK_API_KEY=your_deepseek_key
+MONGODB_URI=your_mongodb_atlas_uri
+JWT_SECRET=your_jwt_secret
+```
 
+Ingest the rulebook PDFs (first time only):
+```
+node ingest.js
+```
+
+Start the backend:
 ```
 npm run dev
 ```
 
-open http://localhost:5173
+**Frontend**
+```
+cd Rule-Weaver-AI
+npm install
+npm run dev
+```
+
+Open http://localhost:5173
 *or other localhost path on your pc*
 
 #### Live Demo
